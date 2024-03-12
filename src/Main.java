@@ -61,7 +61,7 @@ public class Main {
         return new String(chars);
     }
 
-    int [] nextGreaterElement(int[] arr){
+    public int [] nextGreaterElement(int[] arr){
         int[] result = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
         for (int i=arr.length-1; i>=0; i--){
@@ -78,6 +78,27 @@ public class Main {
             stack.push(arr[i]);
         }
         return result;
+    }
+    public boolean validParentheses(String s){
+        Stack<Character> stack = new Stack<>();
+        char[] chars = s.toCharArray();
+        for (char c : chars){
+            if (c == '(' || c == '[' || c == '{'){
+                stack.push(c);
+            }else {
+                if (stack.isEmpty()){
+                    return false;
+                }else {
+                    char top = stack.peek();
+                    if ((c== ')' && top == '(') || (c== '}' && top == '{') || (c== ']' && top == '[')){
+                        stack.pop();
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 
 
@@ -148,11 +169,13 @@ public class Main {
         Main sll = new Main();
 
         //System.out.println(sll.reverseString("babhs"));
-        int[] bab = {4,7,3,4,8,1};
-        bab = sll.nextGreaterElement(bab);
-        for (int n : bab){
-            System.out.println(n);
-        }
+//        int[] bab = {4,7,3,4,8,1};
+//        bab = sll.nextGreaterElement(bab);
+//        for (int n : bab){
+//            System.out.println(n);
+//        }
+        String b = "([{}])";
+        System.out.println(sll.validParentheses(b));
 
     }
 }
