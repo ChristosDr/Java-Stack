@@ -61,6 +61,25 @@ public class Main {
         return new String(chars);
     }
 
+    int [] nextGreaterElement(int[] arr){
+        int[] result = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i=arr.length-1; i>=0; i--){
+            if (!stack.isEmpty()){
+                while(!stack.isEmpty() && stack.peek() <= arr[i]){
+                    stack.pop();
+                }
+            }
+            if (stack.isEmpty()){
+                result[i] =-1;
+            }else{
+                result[i] = stack.peek();
+            }
+            stack.push(arr[i]);
+        }
+        return result;
+    }
+
 
 //    private ListNode top;
 //    private int length;
@@ -128,7 +147,12 @@ public class Main {
 //            System.out.println(stack.peek());
         Main sll = new Main();
 
-        System.out.println(sll.reverseString("babhs"));
+        //System.out.println(sll.reverseString("babhs"));
+        int[] bab = {4,7,3,4,8,1};
+        bab = sll.nextGreaterElement(bab);
+        for (int n : bab){
+            System.out.println(n);
+        }
 
     }
 }
